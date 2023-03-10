@@ -18,13 +18,13 @@ public class ConsumerDemo {
 
     public static void main(String[] args) {
         Properties props = consumerConfigs();
-
         KafkaConsumer<String, String> stringStringKafkaConsumer = new KafkaConsumer<>(props);
         stringStringKafkaConsumer.subscribe(Arrays.asList("xyl"));
 
         while (isRunning.get()) {
             try {
                 ConsumerRecords<String, String> poll = stringStringKafkaConsumer.poll(Duration.ofMillis(1000));
+                System.out.println("222222222222222");
                 for (ConsumerRecord<String, String> stringStringConsumerRecord : poll) {
                     System.out.println("offset:"+stringStringConsumerRecord.value());
                 }
@@ -32,6 +32,7 @@ public class ConsumerDemo {
 //
 //                }
             } catch (Exception e) {
+                System.out.println("11111111111111"+e);
 //                log.error("消费者消费过程发生错误", e);
 
             }
